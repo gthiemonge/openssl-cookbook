@@ -9,7 +9,7 @@ if verify:
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
     context.load_verify_locations("ca-cert.pem")
     if auth:
-        context.load_cert_chain("client.crt", keyfile="client.pem",
+        context.load_cert_chain("client-cert.pem", keyfile="client-key.pem",
                                 password='mypassphrase3')
 else:
     context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
