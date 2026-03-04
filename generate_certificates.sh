@@ -48,3 +48,6 @@ openssl req -key client-key.pem -new -subj "$CLIENT_SUBJECT" -passin pass:$CLIEN
 openssl x509 -req -in client.csr -CA ca-cert.pem  -CAkey ca-key.pem -CAcreateserial -days 365 -passin pass:$CA_PASSPHRASE -out client-cert.pem
 
 cat client-key.pem client-cert.pem > client-key-and-cert.pem
+
+# Generate a PKCS12 file for Octavia (server key + cert + CA chain)
+openssl pkcs12 -export -inkey server-key.pem -in server-cert.pem -certfile ca-cert.pem -passin pass:$SERVER_PASSPHRASE -passout pass: -out server.p12
